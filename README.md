@@ -1,10 +1,10 @@
 # Loan Eligibility Simulator
 
+https://siyethembambatha.github.io/loan-eligibility-simulator/
+
 ![CI](https://github.com/SiyethembaMbatha/loan-eligibility-simulator/actions/workflows/ci.yml/badge.svg)
 
 A responsive web app where customers enter their **monthly income**, **monthly expenses** and **desired loan amount** to see an estimated eligibility result. All results are **mocked, illustrative estimates**, not a financial offer.
-
-<!-- Add a screenshot here: ![Screenshot](docs/screenshot.png) -->
 
 ## Features
 - Mobile-first layout: stacked on phones, side by side on desktop
@@ -13,6 +13,8 @@ A responsive web app where customers enter their **monthly income**, **monthly e
 - Loading, empty and error states
 - Accessible: labelled inputs, `aria-live` results, keyboard friendly, visible focus, reduced-motion and dark-mode support
 - Amounts formatted in ZAR with `Intl.NumberFormat`
+- Interactive loan term slider (6 to 60 months) that updates the monthly instalment, total cost of credit and total interest instantly
+- Employer or income source field with validation
 - Zero dependencies and no build step
 
 ## Run with Docker
