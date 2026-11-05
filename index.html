@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loan Eligibility Simulator</title>
+  <meta name="description" content="Estimate your loan eligibility in seconds. Illustrative estimates only.">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>Loan Eligibility Simulator</h1>
+      <p>Enter your monthly figures and see what you could borrow.</p>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <section class="panel" aria-labelledby="form-title">
+      <h2 id="form-title">Your details</h2>
+      <form id="loan-form" novalidate>
+        <div class="field">
+          <label for="employer">Employer or source of income</label>
+          <div class="input"><input id="employer" name="employer" type="text" autocomplete="organization" maxlength="60" placeholder="e.g. Acme Ltd or Self-employed" aria-describedby="employer-error" required></div>
+          <p id="employer-error" class="error"></p>
+        </div>
+        <div class="field">
+          <label for="income">Monthly income (after tax)</label>
+          <div class="input"><span aria-hidden="true">R</span><input id="income" name="income" inputmode="decimal" autocomplete="off" placeholder="30 000" aria-describedby="income-error" required></div>
+          <p id="income-error" class="error"></p>
+        </div>
+        <div class="field">
+          <label for="expenses">Monthly expenses</label>
+          <div class="input"><span aria-hidden="true">R</span><input id="expenses" name="expenses" inputmode="decimal" autocomplete="off" placeholder="12 000" aria-describedby="expenses-hint expenses-error" required></div>
+          <p id="expenses-hint" class="hint">Rent, food, transport, existing debt repayments.</p>
+          <p id="expenses-error" class="error"></p>
+        </div>
+        <div class="field">
+          <label for="loan">Desired loan amount</label>
+          <div class="input"><span aria-hidden="true">R</span><input id="loan" name="loan" inputmode="decimal" autocomplete="off" placeholder="85 000" aria-describedby="loan-error" required></div>
+          <p id="loan-error" class="error"></p>
+        </div>
+        <div class="field">
+          <label for="term">Loan term</label>
+          <select id="term" name="term"></select>
+        </div>
+        <p class="hint">Interest rate used: <strong id="rate"></strong> per year (fixed assumption).</p>
+        <div class="actions">
+          <button type="submit" id="submit" class="btn primary">Calculate</button>
+          <button type="reset" class="btn">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel results-panel" aria-labelledby="results-title">
+      <h2 id="results-title" class="sr-only">Results</h2>
+      <div id="results" aria-live="polite"><p class="state">Fill in your details and press Calculate to see your estimate.</p></div>
+      <p class="disclaimer">Illustrative estimates only, based on mocked data. This is not a financial offer or credit decision.</p>
+    </section>
+  </main>
+</body>
+</html>

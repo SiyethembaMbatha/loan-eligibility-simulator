@@ -1,0 +1,420 @@
+/* ==========================================================================
+   Loan Eligibility Simulator: styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens (colours and sizes used across the app)
+   -------------------------------------------------------------------------- */
+:root {
+  --green: #3f6f1a;
+  --green-dark: #2f5412;
+  --amber: #8f5300;
+  --red: #a8281f;
+  --blue: #2b7de0;
+  --lime: #8cbf26;
+
+  --bg: #f3f5f0;
+  --panel: #ffffff;
+  --text: #1d2318;
+  --muted: #5b6455;
+  --border: #cfd6c8;
+
+  --radius: 10px;
+}
+
+/* Dark mode: only the colours change */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11150e;
+    --panel: #1b2117;
+    --text: #eef2ea;
+    --muted: #a6b09e;
+    --border: #36402f;
+    --green: #4f8a22;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Base and helpers
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font: 1rem/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Centres content and keeps a margin on small screens */
+.wrap {
+  width: min(1080px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+/* Hidden visually but still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* --------------------------------------------------------------------------
+   3. Header
+   -------------------------------------------------------------------------- */
+.hero {
+  background: var(--green-dark);
+  color: #ffffff;
+  padding: 2rem 0 5rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+   4. Page layout (stacked on phones, side by side on desktop)
+   -------------------------------------------------------------------------- */
+.layout {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: -3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 800px) {
+  .layout {
+    grid-template-columns: 5fr 6fr;
+    align-items: start;
+  }
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.08);
+}
+
+.panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. Form
+   -------------------------------------------------------------------------- */
+.field {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* Input with the "R" currency prefix */
+.input {
+  display: flex;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.input span {
+  padding: 0.6rem 0.75rem;
+  color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+
+input,
+select {
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 0;
+  background: transparent;
+}
+
+select {
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+}
+
+/* Visible keyboard focus */
+.input:focus-within,
+select:focus {
+  outline: 3px solid var(--blue);
+  outline-offset: 1px;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Red border when a field has an error */
+.input:has([aria-invalid="true"]) {
+  border-color: var(--red);
+}
+
+.hint {
+  margin: 0.3rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.error {
+  margin: 0.3rem 0 0;
+  font-size: 0.875rem;
+  color: var(--red);
+  font-weight: 600;
+}
+
+/* Hide the error line when there is no message */
+.error:empty {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error {
+    color: #ff8a80;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Buttons
+   -------------------------------------------------------------------------- */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--border);
+  color: var(--text);
+}
+
+.btn.primary {
+  flex: 1;
+  background: var(--green);
+  color: #ffffff;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--green-dark);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Results panel
+   -------------------------------------------------------------------------- */
+
+/* Empty, loading and error messages */
+.state {
+  color: var(--muted);
+  text-align: center;
+  padding: 2.5rem 1rem;
+  margin: 0;
+}
+
+/* Status banner: green = likely, amber = review, red = unlikely */
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 6px;
+  color: #ffffff;
+  background: var(--green);
+  font-size: 1.15rem;
+}
+
+.banner.review {
+  background: var(--amber);
+}
+
+.banner.unlikely {
+  background: var(--red);
+}
+
+.banner strong {
+  font-size: 1.5rem;
+}
+
+.banner small {
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.explain {
+  margin: 1rem 0;
+}
+
+/* Label and value rows */
+.rows {
+  margin: 0;
+}
+
+.rows div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rows dt {
+  color: var(--muted);
+}
+
+.rows dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   8. Donut chart (pure CSS, no chart library)
+   The JavaScript sets --p to the loan amount percentage.
+   -------------------------------------------------------------------------- */
+.chart {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.donut {
+  --p: 50;
+  position: relative;
+  width: 130px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(var(--blue) calc(var(--p) * 1%), var(--lime) 0);
+}
+
+/* The hole in the middle of the donut */
+.donut::after {
+  content: "";
+  position: absolute;
+  inset: 27%;
+  border-radius: 50%;
+  background: var(--panel);
+}
+
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-right: 0.5rem;
+  border-radius: 3px;
+}
+
+.dot.principal {
+  background: var(--blue);
+}
+
+.dot.interest {
+  background: var(--lime);
+}
+
+/* --------------------------------------------------------------------------
+   9. Disclaimer
+   -------------------------------------------------------------------------- */
+.disclaimer {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   10. Motion (skipped for people who prefer reduced motion)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .results-body {
+    animation: pop 0.25s ease-out;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Loan term slider
+   -------------------------------------------------------------------------- */
+.term {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.term input {
+  padding: 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+/* Visible keyboard focus on the slider */
+.term input:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+}
+
+.scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Stops a very long employer name from breaking the layout */
+.rows dd {
+  overflow-wrap: anywhere;
+}

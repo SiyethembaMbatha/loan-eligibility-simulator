@@ -1,0 +1,13 @@
+{
+  "name": "loan-eligibility-simulator",
+  "version": "1.0.0",
+  "description": "A responsive loan eligibility simulator using mocked data. No dependencies, no build step.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "npx --yes serve -l 8080 .",
+    "test": "node --test"
+  }
+}
