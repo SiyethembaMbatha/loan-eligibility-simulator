@@ -1,6 +1,6 @@
 # Loan Eligibility Simulator
 
-![CI](https://github.com/YOUR_USERNAME/loan-eligibility-simulator/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/SiyethembaMbatha/loan-eligibility-simulator/actions/workflows/ci.yml/badge.svg)
 
 A responsive web app where customers enter their **monthly income**, **monthly expenses** and **desired loan amount** to see an estimated eligibility result. All results are **mocked, illustrative estimates**, not a financial offer.
 
